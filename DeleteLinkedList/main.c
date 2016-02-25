@@ -149,7 +149,7 @@ Node *deleteXElement(Node *pNode,int x){
     Node *pMove;
 
     if (pNode == NULL) {
-        printf("%s函数执行，链表为空，获取x=%d失败\n",__FUNCTION__,x);
+        printf("%s函数执行，链表为空，删除x=%d失败\n",__FUNCTION__,x);
         return NULL;
     }
 
@@ -166,7 +166,11 @@ Node *deleteXElement(Node *pNode,int x){
         pMovePre = pMovePre->next;
     }
 
-    
+    if (pMove == NULL) {
+        printf("%s函数执行，不存在x=%d，删除数据失败\n",__FUNCTION__,x);
+        return pNode;
+    }
+
 
     printf("%s函数执行，删除x=%d成功\n",__FUNCTION__,x);
     return pNode;
