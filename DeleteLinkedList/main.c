@@ -145,6 +145,7 @@ Node *deletePosElement(Node *pNode,int pos){
 //判断x值是否在链表中，若存在则删除该节点
 Node *deleteXElement(Node *pNode,int x){
 
+    //一前一后两个指针，pMovePre是pMove的前一个节点
     Node *pMovePre;
     Node *pMove;
 
@@ -152,7 +153,6 @@ Node *deleteXElement(Node *pNode,int x){
         printf("%s函数执行，链表为空，删除x=%d失败\n",__FUNCTION__,x);
         return NULL;
     }
-
 
     pMovePre = pNode;
     pMove = pMovePre->next;
@@ -171,6 +171,7 @@ Node *deleteXElement(Node *pNode,int x){
             free(pMove);
             break;
         }
+        //同步前进
         pMove = pMove->next;
         pMovePre = pMovePre->next;
     }
@@ -179,7 +180,6 @@ Node *deleteXElement(Node *pNode,int x){
         printf("%s函数执行，不存在x=%d，删除数据失败\n",__FUNCTION__,x);
         return pNode;
     }
-
 
     printf("%s函数执行，删除x=%d成功\n",__FUNCTION__,x);
     return pNode;
