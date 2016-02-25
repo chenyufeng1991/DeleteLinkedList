@@ -100,7 +100,7 @@ elemType sizeList(Node *pNode){
     }
 }
 
-//删除pos位置的节点,删除成功返回1，失败返回0
+//删除pos位置的节点
 Node *deletePosElement(Node *pNode,int pos){
 
     //需要一个头结点来维护
