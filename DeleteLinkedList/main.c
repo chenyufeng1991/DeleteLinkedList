@@ -153,8 +153,17 @@ Node *deleteXElement(Node *pNode,int x){
         return NULL;
     }
 
+
     pMovePre = pNode;
     pMove = pMovePre->next;
+
+    //单独考虑第一个节点
+    if (pMovePre->element == x) {
+        pNode = pMove;
+        free(pMovePre);
+        return pNode;
+    }
+
     while (pMove != NULL) {
         if (pMove->element == x) {
             //找到该节点的前一个节点
@@ -192,9 +201,9 @@ int main(int argc, const char * argv[]) {
     sizeList(pList);
 
     //删除pos位置元素
-    //    pList = deletePosElement(pList, 1);
-    //    printList(pList);
-    //    sizeList(pList);
+    pList = deletePosElement(pList, 1);
+    printList(pList);
+    sizeList(pList);
 
     //判断x值是否在链表中，若存在则删除该节点
     pList = deleteXElement(pList,5);
