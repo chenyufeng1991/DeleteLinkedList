@@ -142,6 +142,35 @@ Node *deletePosElement(Node *pNode,int pos){
     return pNode;
 }
 
+//判断x值是否在链表中，若存在则删除该节点
+Node *deleteXElement(Node *pNode,int x){
+
+    Node *pMovePre;
+    Node *pMove;
+
+    if (pNode == NULL) {
+        printf("%s函数执行，链表为空，获取x=%d失败\n",__FUNCTION__,x);
+        return NULL;
+    }
+
+    pMovePre = pNode;
+    pMove = pMovePre->next;
+    while (pMove != NULL) {
+        if (pMove->element == x) {
+            //找到该节点的前一个节点
+            pMovePre->next = pMove->next;
+            free(pMove);
+            break;
+        }
+        pMove = pMove->next;
+        pMovePre = pMovePre->next;
+    }
+
+    
+
+    printf("%s函数执行，删除x=%d成功\n",__FUNCTION__,x);
+    return pNode;
+}
 
 int main(int argc, const char * argv[]) {
 
@@ -159,9 +188,15 @@ int main(int argc, const char * argv[]) {
     sizeList(pList);
 
     //删除pos位置元素
-    pList = deletePosElement(pList, 1);
+    //    pList = deletePosElement(pList, 1);
+    //    printList(pList);
+    //    sizeList(pList);
+
+    //判断x值是否在链表中，若存在则删除该节点
+    pList = deleteXElement(pList,5);
     printList(pList);
     sizeList(pList);
+    
     
     return 0;
 }
