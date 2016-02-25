@@ -103,6 +103,10 @@ elemType sizeList(Node *pNode){
 //删除pos位置的节点,删除成功返回1，失败返回0
 elemType deletePosElement(Node *pNode,int pos){
 
+
+    //需要一个头结点来维护
+    Node *pHead;
+
     Node *pMove;
     int i = 1;
     if (pos <= 0 || pos > sizeList(pNode)) {
@@ -110,7 +114,23 @@ elemType deletePosElement(Node *pNode,int pos){
         return 0;
     }
 
+    pHead = pNode;
+
+
     pMove = pNode;
+    //单独考虑删除第一个节点
+    if (pos == 1) {
+
+        pMove = pMove->next;
+        pNode = pMove;
+        free(pNode);
+
+        printList(pNode);
+
+        printf("%s函数执行，删除pos=1位置元素成功\n",__FUNCTION__);
+        return 1;
+    }
+
     while (pMove != NULL) {
         if (i == pos - 1) {
             break;
@@ -125,7 +145,6 @@ elemType deletePosElement(Node *pNode,int pos){
     printf("%s函数执行，删除pos=%d位置元素成功\n",__FUNCTION__,pos);
 
     return 1;
-
 }
 
 
@@ -146,8 +165,8 @@ int main(int argc, const char * argv[]) {
 
     //删除pos位置元素
     deletePosElement(pList, 1);//删除第一个节点有问题
-    printList(pList);
-    sizeList(pList);
+//    printList(pList);
+//    sizeList(pList);
 
     
     return 0;
